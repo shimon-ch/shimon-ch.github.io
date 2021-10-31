@@ -119,6 +119,3 @@ out
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-
-# Project specific outputs
-/dist/
