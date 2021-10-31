@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  {% if manifest -%}
+  {% for cssPath in manifest['src/scripts/main.js'].css -%}
+  <link rel="stylesheet" href="/{{ cssPath | url }}">
+  {% endfor %}
+  <script type="module" src="/{{ manifest['src/scripts/main.js'].file | url }}"></script>
+  {% endif %}
+  {% if env === 'development' -%}
+  <script type="module" src="/@vite/client/"></script>
+  <script type="module" src="/src/scripts/main.js"></script>
+  {% endif %}
+  <title>Shimon.ch</title>
+</head>
+<body>
+  <main tabindex="-1" id="main-content">
+  {% block content %}{% endblock %}
+  </main>
+</body>
+</html>
