@@ -1,23 +1,21 @@
 {
-  "name": "shimon-ch.github.io",
-  "version": "1.0.0",
-  "private": true,
-  "description": "",
-  "main": "index.js",
+  "name": "basic",
+  "type": "module",
   "scripts": {
-    "dev": "rimraf dist/ && concurrently --raw \"vite\" \"eleventy --serve\"",
-    "build": "vite build && cross-env ELEVENTY_ENV=production eleventy && rimraf dist/manifest.json"
+    "dev": "vite",
+    "build": "vite build --mode client && vite build",
+    "preview": "wrangler pages dev ./dist",
+    "deploy": "$npm_execpath run build && wrangler pages deploy ./dist"
   },
-  "engines": "16",
+  "private": true,
+  "dependencies": {
+    "hono": "^4.0.5",
+    "honox": "^0.1.4"
+  },
   "devDependencies": {
-    "@11ty/eleventy": "^1.0.1",
-    "concurrently": "^7.1.0",
-    "cross-env": "^7.0.3",
-    "prettier": "^2.6.2",
-    "prettier-plugin-organize-imports": "^2.3.4",
-    "rimraf": "^3.0.2",
-    "sass": "^1.51.0",
-    "sass-mq": "^6.0.0",
-    "vite": "^2.9.8"
+    "@cloudflare/workers-types": "^4.20240208.0",
+    "@hono/vite-cloudflare-pages": "^0.2.4",
+    "vite": "^5.0.12",
+    "wrangler": "^3.27.0"
   }
 }
